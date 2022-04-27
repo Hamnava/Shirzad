@@ -1,0 +1,73 @@
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Shirzad.Core.Repository.Interfaces;
+using Shirzad.Core.ViewModels;
+using Shirzad.DataLayer.Entities;
+
+namespace Shirzad.Controllers
+{
+    public class SitePagesController : Controller
+    {
+        private readonly IUnitOfWork _context;
+        private readonly IMapper _mapper;
+        private readonly INotyfService _notify;
+        public SitePagesController(IUnitOfWork context, IMapper mapper, INotyfService notify)
+        {
+            _context = context;
+            _mapper = mapper;
+            _notify = notify;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var newProducts = await _context.productUW.GetEntitiesAsync(x=> x.IsNew && x.IsActive);
+            return View(newProducts);
+        }
+
+        public async Task<IActionResult> ProductDetails(int id)
+        {
+            var product = await _context.productUW.GetByIdAsync(id);
+            return View(product);
+        }
+        public IActionResult ProductSearch()
+        {
+            return View();
+        }
+
+        public IActionResult PricingOrder()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PricingOrder(PricingViewModel pricing)
+        {
+            if (!ModelState.IsValid) return View(pricing);
+            var mapModel = _mapper.Map<Pricing>(pricing);
+            await _context.pricingUW.Create(mapModel);
+            await _context.saveAsync();
+            _notify.Success("Your message was sent successfuly!");
+            return RedirectToAction(nameof(PricingOrder));
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(ContactViewModel contact)
+        {
+            if (!ModelState.IsValid) return View(contact);
+            var mapModel = _mapper.Map<ContactUs>(contact);
+            await _context.contactUsUW.Create(mapModel);
+            await _context.saveAsync();
+            _notify.Success("Your message was sent successfuly!");
+            return RedirectToAction(nameof(Contact));
+        }
+
+        public IActionResult WebPay()
+        {
+            return View();
+        }
+    }
+}

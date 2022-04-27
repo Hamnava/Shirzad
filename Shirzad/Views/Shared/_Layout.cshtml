@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shirzad</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Shirzad.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 bg-dark" style="height:100vh">
+                <h3 class="text-center text-warning mt-5">Hi, Shirzad Jan</h3>
+                <ul class="list-unstyled mt-5">
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Product" asp-action="Index">Product</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="ProductGallery" asp-action="Index">Product Gallery</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Contact" asp-action="Index">Contact Us</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Slider" asp-action="Index">Slider</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Category" asp-action="Index">Category</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Pricing" asp-action="Index">Pricing</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Service" asp-action="Index">Services</a> </li>
+                    <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Emails" asp-action="Index">Emails</a> </li>
+                    <li class="my-2 px-4">  
+                        <form method="post" asp-controller="Account" asp-action="LogOut">
+                            <button class="btn btn-secondary w-100" type="submit">LogOut</button>
+                        </form>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-10">
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Shirzad - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

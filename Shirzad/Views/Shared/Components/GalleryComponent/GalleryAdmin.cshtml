@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ProductGallery>
+
+
+    @foreach (var item in Model)
+{
+    <div class="col-2 admin-gallery">
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="~/Img/Product/@item.Url" alt="" class="img-fluid" />
+                <a asp-action="Delete" asp-controller="ProductGallery" asp-route-id="@item.Id" 
+                   asp-route-url="@ViewBag.PhotoUrl" asp-route-productId="@ViewBag.ProductId"
+                   class="btn btn-danger over-icon animate">
+                   <i class="fa fa-trash"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+}

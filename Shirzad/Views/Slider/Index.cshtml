@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "Slider List";
+    var counter = 1;
+}
+<div class="container mt-4">
+    <div class="row">
+        <div class="alert alert-info mb-3">
+            Slider List
+        </div>
+    </div>
+    <a class="btn btn-primary" asp-action="AddSlider" asp-controller="Slider"> Add New <i class="fa fa-plus ml-2"></i></a>
+</div>
+<table class="table table-hover mt-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Slider Name</th>
+            <th scope="col">Is Active</th>
+            <th scope="col">image</th>
+            <th scope="col">Order</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@item.SliderTitle</td>
+                <td>@(item.IsActive? "Active" : "InActive")</td>
+                <td>
+                    <img src="~/Img/Slider/@item.SliderImg" alt="@item.SliderTitle" style="width:150px; height:60px" />
+                </td>
+                <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>
+                <td>
+                    
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Slider" class="btn-danger btn mr-3"><i class="fa fa-trash"></i></a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Slider" class="btn-success btn mr-3"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+            counter++;
+        }
+
+       
+    </tbody>
+</table>

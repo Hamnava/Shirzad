@@ -1,0 +1,60 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "_MainSiteLayout";
+}
+
+<!-- start of Contact section -->
+<div class="container">
+    <div class="row">
+        <div class="text-center my-3">
+            <h3>Contact Us</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nemo
+                fugit et.
+            </p>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 text-center mt-4">
+            <i class="fa fa-envelope text-contact-icon"></i>
+            <strong class="d-block">Email</strong>
+            <a href="mailto:shirzad@gmail.com">shirzad@gmail.com</a>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 text-center mt-4">
+            <i class="fa fa-home text-contact-icon"></i>
+            <strong class="d-block">Main store address</strong>
+            <span>Chile 5 street somewhere near you</span>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 text-center mt-4">
+            <i class="fa fa-phone text-contact-icon"></i>
+            <strong class="d-block">Phone</strong>
+            <span>0737732720</span>
+        </div>
+    </div>
+    <form asp-action="Contact" asp-controller="SitePages" method="post">
+        <div class="row my-5 p-5 contact-message-box">
+            <strong>Send us your message</strong>
+            <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                    <input type="text" asp-for="Name" class="form-control mt-2" placeholder="Your name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="Phone" class="form-control mt-4" placeholder="Your Phone Number">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" asp-for="EmailAddress" class="form-control mt-4" placeholder="Your Email">
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                    <textarea asp-for="Message" rows="6" class="form-control my-2" placeholder="Your Message"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+            </div>
+            <button class="btn btn-submit-message mt-3" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<!-- end of contact section -->

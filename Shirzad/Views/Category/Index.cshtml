@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Category List";
+    var counter = 1;
+}
+<div class="container mt-4">
+    <div class="row">
+        <div class="alert alert-info mb-3">
+            Categry List
+        </div>
+    </div>
+    <a class="btn btn-primary" asp-action="AddCategory" asp-controller="Category"> Add New <i class="fa fa-plus ml-2"></i></a>
+</div>
+<table class="table table-hover mt-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Is Deleted</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@item.Name</td>
+                <td>@(item.IsDelete? "Deleted" : "Active")</td>
+                <td>
+                    @if (item.IsDelete)
+                    {
+                        <a asp-action="DeleteCategory" asp-route-id="@item.Id" asp-controller="Category" class="btn-info btn mr-3"><i class="fa fa-undo"></i></a>
+                    }
+                    else
+                    {
+                    <a asp-action="DeleteCategory" asp-route-id="@item.Id" asp-controller="Category" class="btn-danger btn mr-3"><i class="fa fa-trash"></i></a>
+                    }
+                    <a asp-action="EditCategory" asp-route-id="@item.Id" asp-controller="Category" class="btn-success btn mr-3"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+            counter++;
+        }
+
+       
+    </tbody>
+</table>

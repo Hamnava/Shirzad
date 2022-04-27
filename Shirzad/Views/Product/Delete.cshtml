@@ -1,0 +1,37 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Delete Product";
+
+}
+
+
+<div class="col-6 mt-5  offset-3">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="alert alert-info text-center mb-3">
+                Delete Product permanently (Not Recommended)
+            </div>
+        </div>
+    </div>
+    <div class="card-box mt-3 bordered">
+        <h6 class="text-center text-dark">
+            <strong class="text-warning">Warning! </strong> 
+            By deleting this product you will delete all the related photos!
+            instead you can <a asp-action="Edit" asp-route-id="@Model.Id">InActivate</a>  this product <br />
+            Do you want to continue?    
+        </h6>
+        <form asp-action="Delete" method="post" class="mt-5" enctype="multipart/form-data">
+            <input type="number" hidden asp-for="Id" />
+
+            <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                <button class="btn btn-primary " type="submit">
+                    Yes, Delete It
+                </button>
+                <a asp-action="Index" class="btn btn-default">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>

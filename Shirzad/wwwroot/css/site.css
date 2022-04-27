@@ -1,0 +1,76 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.w-100 {
+    width:100%;
+    color:#ffffff !important;
+}
+.save-btn {
+    min-width: 100px;
+    margin: 10px auto
+}
+
+.admin-gallery .card:hover img {
+    transform: scale(1.2,1.2);
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+    opacity: .7;
+}
+
+.admin-gallery .card img {
+    transform: scale(1,1);
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+    opacity: 1;
+}
+
+.admin-gallery .card .card-img-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.admin-gallery .card .over-icon {
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+}
+
+.card-img-wrapper:hover .over-icon {
+    bottom: 0;
+    opacity: 1;
+}
+
+.animate {
+    transition: all .3s ease-in-out;
+}
+
+
+@keyframes fa-blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Service>
+
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="item bg-white mh-100">
+        <div>
+            <img src="~/Img/Service/@item.PhotoUrl"
+             class="img-fluid py-4 mx-auto rounded-circle"
+             alt="@item.Name" />
+        </div>
+        <div class="card-body text-center">
+            <h4>@item.Name</h4>
+            <p>
+                @item.Description
+            </p>
+        </div>
+    </div>
+}

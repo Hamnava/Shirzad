@@ -1,0 +1,43 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Product";
+    Layout = "_MainSiteLayout";
+}
+
+
+  <!-- start of silder section -->
+   @await Component.InvokeAsync("ProductGalleryComponent",Model.Id)
+    <!-- end of slider section -->
+    <div class="container-fluid product-details mt-5 px-5">
+      <div class="col-12">
+        <h3 class="mt-5 mb-3">@Model.Name</h3>
+        <p>
+         @Model.PrDescription
+        </p>
+      </div>
+    </div>
+    <!-- start of product section -->
+    <Product class="products">
+      <div class="products">
+        <!-- start of first row owl-carousel-->
+        <div class="mx-auto pt-5" style="width: 95%">
+          <div class="border-products1">
+            <span class="pb-1 border-products w-100">Related Products</span>
+          </div>
+          <div class="container-fluid products">
+            <div class="row my-2">
+              <div class="col-12 m-auto mt-4">
+                <div class="owl-carousel owl-theme">
+                  
+
+                 @await Component.InvokeAsync("RelatedProduct", @Model.CategoryId)
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of first row owl-carousel-->
+      </div>
+    </Product>
+    <!-- end of product section -->

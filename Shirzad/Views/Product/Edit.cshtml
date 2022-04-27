@@ -1,0 +1,77 @@
+﻿
+@model ProductViewModel
+@{
+    ViewData["Title"] = "Edit Product";
+    
+}
+
+
+<div class="col-6 mt-5  offset-3">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="alert alert-info text-center mb-3">
+                Edit Product
+            </div>
+        </div>
+    </div>
+    <div class="card-box">
+        <form asp-action="Edit" method="post" class="mt-5" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+            <div class="form-group my-3">
+                <label> Prodcut Name</label>
+                <input asp-for="Name" type="text" placeholder="Enter the Product Name " class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">Category</label>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+              <div class="form-group my-3">
+                <label> Prodcut Price</label>
+                <input asp-for="Price" type="number" min="1" placeholder="Enter the Product Price " class="form-control">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label> Prodcut Price</label>
+                <textarea asp-for="PrDescription"  placeholder="Enter the Product Description " class="form-control"></textarea>
+                <span asp-validation-for="PrDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <input type="hidden" asp-for="PhotoUrl" />
+                <label>Picture</label>
+                <input name="file" type="file"  class="form-control">
+                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                <img src="~/Img/Product/@Model.PhotoUrl" style="width:400px; height:200px"/>
+            </div>
+
+            <div class="form-group my-3">
+                <div class="checkbox">
+                    <input asp-for="IsActive" class="check-box" id="remember-1" type="checkbox" class="mr-4">
+                    <label asp-for="IsActive" for="remember-1"> Keep Active </label>
+                </div>
+            </div>
+
+             <div class="form-group my-3">
+                <div class="checkbox">
+                    <input asp-for="IsNew" class="check-box" id="remember-1" type="checkbox" class="mr-4">
+                    <label asp-for="IsNew" for="remember-1"> Mark as New </label>
+                </div>
+            </div>
+
+            <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                <button class="btn btn-primary " type="submit">
+                    Save
+                </button>
+                <a asp-action="Index" class="btn btn-default">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>

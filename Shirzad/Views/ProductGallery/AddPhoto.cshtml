@@ -1,0 +1,37 @@
+﻿@model GalleryViewModel
+
+@{
+    ViewData["Title"] = "Product Gallery";
+}
+
+<div class="contaier mt-4">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <img src="~/Img/Product/@ViewBag.PhotoUrl" alt="" height="250" />
+            </div>
+        </div>
+        <div class="col-6">
+            <form asp-action="AddPhoto" method="post" class="mt-5" enctype="multipart/form-data">
+                <div class="form-group my-3">
+                    <label>Photo</label>
+                    <input name="file" type="file" class="form-control">
+                    <span asp-validation-for="Url" class="text-danger"></span>
+                </div>
+                <input asp-for="ProductId" value="@ViewBag.ProductId" hidden />
+
+                <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                    <button class="btn btn-primary " type="submit">
+                        Save
+                    </button>
+                    <a asp-action="Index" class="btn btn-default">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">
+         @(await Component.InvokeAsync("GalleryComponent", @ViewBag.ProductId))
+    </div>
+</div>

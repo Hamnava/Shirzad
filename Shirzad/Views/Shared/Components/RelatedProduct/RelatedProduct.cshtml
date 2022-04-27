@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Product>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="item bg-white mh-100 pb-3">
+        @if (item.IsNew)
+        {
+            <div class="px-4 pt-2 new">
+                <span class="fs-5 text-white font-weight-bold bg-warning px-2 py-1 rounded-3">new</span>
+            </div>
+        }
+
+        <div class="">
+            <a asp-action="ProductDetails" asp-controller="SitePages" asp-route-id="@item.Id">
+            <img src="~/Img/Product/@item.PhotoUrl"
+             class="img-fluid py-4 mx-auto"
+             alt="@item.AltProp" />
+             </a>
+        </div>
+        <div class="card-body text-center">
+            <h4>@item.Name</h4>
+        </div>
+        <div class="text-center m-0 p-0">
+
+            <p class="pb-2 price fs-5">$ @item.Price</p>
+        </div>
+    </div>
+}

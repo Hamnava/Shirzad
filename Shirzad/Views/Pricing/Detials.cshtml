@@ -1,0 +1,25 @@
+﻿@model Pricing
+@{
+    ViewData["Title"] = "Contact Message";
+
+}
+
+
+<div class="col-6 mt-5  offset-3">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="alert alert-info text-center mb-3">
+                Contact Message
+            </div>
+            <a class="btn btn-warning" asp-route-id="@Model.Id" asp-action="Delete" asp-controller="Pricing"> Delete This Message <i class="fa fa-trash ml-2"></i></a>
+        </div>
+        <div class="row p-5">
+            <p> <strong>Sender : </strong> @Model.Name @Model.LastName</p>
+            <p> <strong>Sent Date : </strong> @Model.SendDate.ToString("dddd, dd MMMM yyyy")</p>
+            <p> <strong>Phone Number : </strong> @Model.Phone</p>
+            <p> <strong>Email : </strong> @Model.Email</p>
+            <p> <strong>Message : </strong> @Model.Message</p>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Slider>
+
+@{
+    ViewData["Title"] = "ShowSliderForUser";
+    Layout = null;
+    int activclass = 1;
+}
+<Slider>
+    <div class="container-fluid products mt-2">
+        <div class="row mx-auto">
+            <div class="col-lg-12">
+                <div id="carouselExampleIndicators"
+                     class="carousel slide"
+                     data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <button type="button"
+                                data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="@i"
+                                aria-label="Slide 5"
+                                class="@(i==0?"active":"")">
+                            </button>
+                        }
+
+                    </div>
+                    <div class="carousel-inner">
+                        @foreach (var item in Model)
+                        {
+                            <div class="carousel-item @(activclass==1?"active":"")">
+                                <img title="@item.SliderTitle" src="~/Img/Slider/@item.SliderImg" class="d-block w-100" alt="@item.sliderAlt">
+                            </div>
+                            activclass++;
+                        }
+                    </div>
+                    <button class="carousel-control-prev justify-content-start px-3"
+                            type="button"
+                            data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-danger rounded-circle"
+                              aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next justify-content-end px-3"
+                            type="button"
+                            data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-danger rounded-circle"
+                              aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</Slider>
