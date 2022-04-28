@@ -12,11 +12,13 @@ namespace Shirzad.Controllers
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
         private readonly INotyfService _notify;
-        public SitePagesController(IUnitOfWork context, IMapper mapper, INotyfService notify)
+        private readonly IProductRepository _product;
+        public SitePagesController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepository product)
         {
             _context = context;
             _mapper = mapper;
             _notify = notify;
+            _product = product;
         }
         public async Task<IActionResult> Index()
         {
@@ -33,7 +35,8 @@ namespace Shirzad.Controllers
         [HttpGet]
         public IActionResult ProductSearch(string text, List<int> categoryid, int sort = 1)
         {
-            return View();
+            var products = _product.Search(text, categoryid, sort);
+            return View(products);
         }
 
         public IActionResult PricingOrder()
