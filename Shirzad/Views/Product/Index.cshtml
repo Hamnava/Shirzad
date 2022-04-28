@@ -16,6 +16,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Product Name</th>
+            <th scope="col">Image</th>
             <th scope="col">Is Active</th>
             <th scope="col">Category</th>
             <th scope="col">IsNew</th>
@@ -35,7 +36,7 @@
                 </td>
                 <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>
                 <td>@item.Category.Name</td>
-                <td style="color:@(item.IsNew? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "New" : "Not New")</td>
+                <td style="color:@(item.IsNew? "green": "darkred"); font-weight:bold; ">@(item.IsNew? "New" : "Not New")</td>
                 <td>@item.Price</td>
                 <td>@item.CreateDate.ToString("dddd, dd MMMM yyyy")</td>
                 

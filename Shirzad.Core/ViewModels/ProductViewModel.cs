@@ -15,7 +15,6 @@ namespace Shirzad.Core.ViewModels
         [Required(ErrorMessage = "Enter the product price")]
         public double Price { get; set; }
         public string PhotoUrl { get; set; }
-        public DateTime CreateDate { get; set; }
 
         public string AltProp { get; set; }
         [Required(ErrorMessage = "Enter the product details")]

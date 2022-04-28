@@ -35,12 +35,16 @@ namespace Shirzad.Controllers
         [HttpGet]
         public async Task<IActionResult> ProductSearch(string text, List<int> categoryid, int sort = 1)
         {
-            var products = _product.Search(text, categoryid, sort);
-
             ViewBag.categories = await _context.categoryUW.GetEntitiesAsync();
             ViewBag.text = text;
             ViewBag.sort = sort;
             ViewBag.categoryid = categoryid;
+            if (text == null ||text== "")
+            {
+                var product = await _context.productUW.GetEntitiesAsync();
+                return View(product);
+            }
+            var products = _product.Search(text, categoryid, sort);
             return View(products);
         }
 

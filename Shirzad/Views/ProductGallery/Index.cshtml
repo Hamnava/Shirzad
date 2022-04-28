@@ -21,7 +21,7 @@
             @*<th scope="col">Category</th>*@
             <th scope="col">IsNew</th>
             <th scope="col">Price</th>
-            <th scope="col">Created</th>
+          
             <th scope="col">Operation</th>
         </tr>
     </thead>
@@ -38,7 +38,7 @@
                @* <td>@item.Category.Name</td>*@
                 <td style="color:@(item.IsNew? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "New" : "Not New")</td>
                 <td>@item.Price</td>
-                <td>@item.CreateDate.ToString("dddd, dd MMMM yyyy")</td>
+               
                 
                 <td>
                     <a asp-action="AddPhoto" asp-route-id="@item.Id" asp-controller="ProductGallery" title="Add Photo" class="btn-primary btn"><i class="fa fa-image"></i> <i class="fa fa-plus"></i></a>
