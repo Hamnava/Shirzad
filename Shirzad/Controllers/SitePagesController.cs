@@ -39,7 +39,8 @@ namespace Shirzad.Controllers
 
             ViewBag.categories = await _context.categoryUW.GetEntitiesAsync();
             ViewBag.text = text;
-
+            ViewBag.sort = sort;
+            ViewBag.categoryid = categoryid;
             return View(products);
         }
 

@@ -5,16 +5,18 @@
     Layout = "_MainSiteLayout";
     List<Category> categories = ViewBag.categories;
     string text = ViewBag.text;
+    int sort = ViewBag.sort;
+    List<int> categoryid = ViewBag.categoryid;
 }
 
 <!-- start of first search box -->
 <div class="container-fluid my-3 search-box">
-    <form class="d-flex justify-content-center align-items-center border-2">
+    <form class="d-flex justify-content-center align-items-center border-2" asp-action="ProductSearch" asp-controller="SitePages" method="get">
         <input class="form-control w-50 search-box"
                type="search"
                placeholder="every thing we want are here"
-               aria-label="Search" />
-        <i class="fa fa-search search-icon fs-4"></i>
+               aria-label="Search" name="text" id="text" value="@ViewBag.text" />
+        <button class="fa fa-search search-icon fs-4" type="submit"></button>
     </form>
 </div>
 <!-- end of first search box -->
@@ -24,132 +26,142 @@
         <input type="hidden" id="sort" name="sort" />
         <input type="hidden" id="text" name="text" value="@text" />
 
-    <div class="row mx-2">
-        <div class="col-lg-3 float-start">
-            <div class="accordion accordion-flush my-3"
-                 id="accordionFlushExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne"
-                                aria-expanded="false"
-                                aria-controls="flush-collapseOne bg-white">
-                            Catagory of Products
-                        </button>
-                    </h2>
-                    <div id="flush-collapseOne"
-                         class="accordion-collapse collapse"
-                         aria-labelledby="flush-headingOne"
-                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <ul>
-                                @foreach (var item in categories)
-                                {
-                                    <li class="d-flex justify-content-between my-3">
-                                        <a>@item.Name</a>
-                                        <input type="checkbox" value="@item.Id" name="categoryid" />
-                                    </li>
-                                }
+        <div class="row mx-2">
+            <div class="col-lg-3 float-start">
+                <div class="accordion accordion-flush my-3"
+                     id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne"
+                                    aria-expanded="false"
+                                    aria-controls="flush-collapseOne bg-white">
+                                Catagory of Products
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingOne"
+                             data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul>
+                                    @foreach (var item in categories)
+                                    {
+                                        @if (categoryid.Contains(item.Id))
+                                        {
+                                            <li class="d-flex justify-content-between my-3">
+                                                <a>@item.Name</a>
+                                                <input checked="checked" onchange='submitform()' type="checkbox" value="@item.Id" name="categoryid" />
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="d-flex justify-content-between my-3">
+                                                <a>@item.Name</a>
+                                                <input onchange='submitform()' type="checkbox" value="@item.Id" name="categoryid" />
+                                            </li>
+                                        }
+
+                                    }
 
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-9 float-end">
-            <div class="row border border-0 bg-white border-secondary my-3 products-item">
-                <div class="row">
-                    <div class="archive-header">
-                        <h2 class="archive-header-title">Products</h2>
-                        <div class="d-md-flex d-block justify-content-md-between">
-                            <div class="sort-tabs pt-2 pr m-0">
-                                <p>Sort By Name :</p>
-                            </div>
-                            <div class="nav-sort-tabs-res m-0 p-0">
-                                <ul class="nav sort-tabs-options m-0 p-0"
-                                    id="myTab"
-                                    role="tablist">
-
-                                    <li class="nav-item active">
-                                        <a class="nav-link" onclick='submitform(1)'>Bestselling</a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link" onclick='submitform(2)'>newest</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" onclick='submitform(3)'>cheapest</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" onclick='submitform(4)'>most-expensive</a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="product-items">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="MostVisted">
-                        <div class="row">
-                            @foreach (var item in Model)
-                            {
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xsl-12 order-1 d-block mb-3">
-                                    <section class="product-box product product-type-simple bg-white border rounded-3">
-                                        <div class="tab-pane">
-                                            <div href="#" class="d-block p-3">
-                                                @*<div class="promotion-badge text-center border-bottom border-1 border-danger py-2 text-danger">
-                                                    Selling
-                                                </div>*@
-                                                <div class="d-flex justify-content-between my-2 mx-2">
-                                                    @if (item.IsNew)
-                                                    {
-                                                        <div class="discount-d bg-danger text-white rounded-3">
-                                                            <span class="px-2 py-1">New</span>
-                                                        </div>
-                                                    }
-
-                                                </div>
-                                                <img src="~/Img/Product/@item.PhotoUrl"
-                                                 class="img-fluid" alt="@item.AltProp" />
-                                            </div>
-                                        </div>
-                                        <div class="title text-center">
-                                            <h5 class="card-name" href="#">@item.Name</h5>
-                                        </div>
-                                        <div class="price text-center">
-                                            <span class="amount">
-                                               $ @item.Price
-
-                                            </span>
-                                        </div>
-                                    </section>
+            <div class="col-lg-9 float-end">
+                <div class="row border border-0 bg-white border-secondary my-3 products-item">
+                    <div class="row">
+                        <div class="archive-header">
+                            <h2 class="archive-header-title">Products</h2>
+                            <div class="d-md-flex d-block justify-content-md-between">
+                                <div class="sort-tabs pt-2 pr m-0">
+                                    <p>Sort By Name :</p>
                                 </div>
-                            }
+                                <div class="nav-sort-tabs-res m-0 p-0">
+                                    <ul class="nav sort-tabs-options m-0 p-0"
+                                        id="myTab"
+                                        role="tablist">
 
+                                        <li class="nav-item">
+                                            <a class="nav-link @(sort== 1? "active": "")" onclick='submitform(1)'>Bestselling</a>
+                                        </li>
 
+                                        <li class="nav-item">
+                                            <a class="nav-link @(sort== 2? "active": "")" onclick='submitform(2)'>newest</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @(sort== 3? "active": "")" onclick='submitform(3)'>cheapest</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link @(sort== 4? "active": "")" onclick='submitform(4)'>most-expensive</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="product-items">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="MostVisted">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xsl-12 order-1 d-block mb-3">
+                                        <section class="product-box product product-type-simple bg-white border rounded-3">
+                                            <div class="tab-pane">
+                                                <div href="#" class="d-block p-3">
+                                                    @*<div class="promotion-badge text-center border-bottom border-1 border-danger py-2 text-danger">
+                                                        Selling
+                                                        </div>*@
+                                                    <div class="d-flex justify-content-between my-2 mx-2">
+                                                        @if (item.IsNew)
+                                                        {
+                                                            <div class="discount-d bg-danger text-white rounded-3">
+                                                                <span class="px-2 py-1">New</span>
+                                                            </div>
+                                                        }
 
+                                                    </div>
+                                                    <img src="~/Img/Product/@item.PhotoUrl"
+                                                     class="img-fluid" alt="@item.AltProp" />
+                                                </div>
+                                            </div>
+                                            <div class="title text-center">
+                                                <h5 class="card-name" href="#">@item.Name</h5>
+                                            </div>
+                                            <div class="price text-center">
+                                                <span class="amount">
+                                                    $ @item.Price
+
+                                                </span>
+                                            </div>
+                                        </section>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
 </div>
 <!-- end of second products -->
-
 @section Scripts {
-    <script>
-        function submitform(e){
-            $("#sort").val(e);
-            $("#form").submit();
-        }
-    </script>
+<script>
+    function submitform(e){
+        $("#sort").val(e);
+        $("#form").submit();
+    }
+</script>
 }
