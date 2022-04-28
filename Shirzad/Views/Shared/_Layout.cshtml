@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/font-awesome.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Shirzad.styles.css" asp-append-version="true" />
+
+    <!--CKEditor-->
+    <link rel="stylesheet" href="~/lib/ckeditor/prism_1.0.1/prism/lib/prism/prism_patched.min.css" asp-append-version="true" />
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 bg-dark" style="height:100vh">
+            <div class="col-2 bg-dark" style="min-height:100vh">
                 <h3 class="text-center text-warning mt-5">Hi, Shirzad Jan</h3>
                 <ul class="list-unstyled mt-5">
                     <li class="my-2 px-4">  <a class="btn btn-secondary my-2 w-100" asp-controller="Product" asp-action="Index">Product</a> </li>
@@ -53,6 +56,9 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!--CKEditor-->
+    <script src="~/lib/ckeditor/prism_1.0.1/prism/lib/prism/prism_patched.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
