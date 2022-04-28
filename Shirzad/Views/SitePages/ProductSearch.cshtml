@@ -1,6 +1,9 @@
-﻿@{
+﻿@model IEnumerable<Product>
+
+@{
     ViewData["Title"] = "Products";
     Layout = "_MainSiteLayout";
+    List<Category> categories = ViewBag.categories;
 }
 
     <!-- start of first search box -->
@@ -45,18 +48,15 @@
               >
                 <div class="accordion-body">
                   <ul>
-                    <li class="d-flex justify-content-between">
-                      <a>All</a>
-                      <input type="checkbox" />
+                      @foreach (var item in categories)
+                      {
+                            <li class="d-flex justify-content-between">
+                           <a>@item.Name</a>
+                              <input type="checkbox" value="@item.Id" name="categoryid" />
                     </li>
-                    <li class="d-flex justify-content-between">
-                      <a>All</a>
-                      <input type="checkbox" />
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <a>All</a>
-                      <input type="checkbox" />
-                    </li>
+                      }
+                  
+                    
                   </ul>
                 </div>
               </div>
