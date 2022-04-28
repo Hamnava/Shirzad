@@ -11,6 +11,9 @@ namespace Shirzad.Core.Repository.Interfaces
     {
         Task<bool> GetProductByProductNameAsync(string productName, int id);
         Task<ProductGallery> GetGalleryByProductId(int productId);
-        
+
+        List<Product> Search(string text, List<int> categoryid, int sort = 1);
+
+
     }
 }

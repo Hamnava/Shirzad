@@ -29,7 +29,9 @@ namespace Shirzad.Controllers
             var product = await _context.productUW.GetByIdAsync(id);
             return View(product);
         }
-        public IActionResult ProductSearch()
+
+        [HttpGet]
+        public IActionResult ProductSearch(string text, List<int> categoryid, int sort = 1)
         {
             return View();
         }
