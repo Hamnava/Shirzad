@@ -1,0 +1,49 @@
+﻿@model EmailSenderViewModel
+@{
+    ViewData["Title"] = "Add Product";
+
+}
+
+<div class="mt-5"></div>
+
+<div class="container mt-5 mx-5 pr-5">
+    <div class="row">
+        <div class="alert alert-info text-center mb-3">
+            SEND PUBLIC EMAILS TO REGISTERD EMAIL_ADDRESS
+        </div>
+    </div>
+</div>
+<div class="card-box">
+    <form asp-action="SendEmail" asp-controller="Account" method="post" class="mt-5" >
+         <div class="col-12">
+            <div class="form-group my-3">
+                <label> Email Subject</label>
+                <input asp-for="Subject" type="text" placeholder="Email Subject " class="form-control">
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+
+         
+       
+            <div class="form-group my-3">
+                <label> Email Message</label>
+                <textarea asp-for="Message" placeholder="Enter the Email Messages " class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                <button class="btn btn-primary " type="submit">
+                    Save
+                </button>
+                <a asp-action="Index" class="btn btn-default">
+                    Cancel
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script src="~/lib/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("Message");
+</script>

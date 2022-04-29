@@ -23,18 +23,20 @@ namespace Shirzad.Controllers
             _email = email;
         }
 
-
-        public async Task<IActionResult> SendEmail( string subject, string message)
+        [HttpPost]
+        public async Task<IActionResult> SendEmail(EmailSenderViewModel model)
         {
+           string UserName = HttpContext.User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(UserName);
             var emaillists = await _context.emailRegisterUW.GetEntitiesAsync();
             if (emaillists != null)
             {
                 foreach (var item in emaillists)
                 {
-                    await _email.SendEmailAsync(item.Email, subject, message);
+                    await _email.SendEmailAsync(item.Email, model.Subject, model.Message, user.UserName, user.EmailPassword, user.Email);
                 }
             }
-            return RedirectToAction("Forget");
+            return RedirectToAction("Index");
         }
 
 
@@ -89,14 +91,14 @@ namespace Shirzad.Controllers
         {
             if (ModelState.IsValid)
             {
-                var username = await _userManager.FindByEmailAsync(model.UserName);
-                if (username == null)
+                var user = await _userManager.FindByEmailAsync(model.UserName);
+                if (user == null)
                 {
                     ModelState.AddModelError("Password", "Oops, Incorrect username or password 🙄");
                     return View(model);
                 }
                 
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.Ispersistant, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.Ispersistant, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Dashboard");

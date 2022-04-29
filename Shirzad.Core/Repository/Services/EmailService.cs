@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Shirzad.Core.Repository.Interfaces;
 using Shirzad.DataLayer.Context;
 using Shirzad.DataLayer.Entities;
@@ -15,9 +17,11 @@ namespace Shirzad.Core.Repository.Services
     public class EmailService : IEmailRepository
     {
         private readonly ApplicationContext _context;
-        public EmailService(ApplicationContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public EmailService(ApplicationContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<bool> IsEmailExisted(string email)
@@ -30,21 +34,19 @@ namespace Shirzad.Core.Repository.Services
             return true;
         }
 
-        public async Task<ApplicationUser> GetMyUser()
+      
+      
+        public async Task SendEmailAsync(string email, string subject, string message, string username, string password, string senderEmail)
         {
-            return await _context.Users.SingleOrDefaultAsync();
-        }
-        public async Task SendEmailAsync(string email, string subject, string message)
-        {
+           
 
-            var user = await GetMyUser();
             using (var Client = new SmtpClient())
             {
                 var Credential = new NetworkCredential
                 {
                     //UserName Example : If your email is test@gmail.com yourUserName is test
-                    UserName = user.UserName,
-                    Password = user.EmailPassword
+                    UserName = username,
+                    Password = password
 
                 };
                 Client.Credentials = Credential;
@@ -54,7 +56,7 @@ namespace Shirzad.Core.Repository.Services
                 using (var emailMessage = new MailMessage())
                 {
                     emailMessage.To.Add(new MailAddress(email));
-                    emailMessage.From = new MailAddress(user.Email, "Shirzad Store");
+                    emailMessage.From = new MailAddress(senderEmail, "Shirzad Store");
                     emailMessage.Subject = subject;
                     emailMessage.IsBodyHtml = true; //contains html tag
                     emailMessage.Body = message;

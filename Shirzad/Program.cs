@@ -19,6 +19,7 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection
 //Recognizing the interface
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductRepository, ProductService>();
+builder.Services.AddScoped<IEmailRepository, EmailService>();
 
 //Identity Methods
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
@@ -54,8 +55,8 @@ using (IServiceScope serviceScope = ((IApplicationBuilder)app).ApplicationServic
     {
         user = new ApplicationUser()
         {
-            Email = "admin@gmail.com",
-            UserName = "admin@gmail.com",
+            Email = "nematullahhussaini626l@gmail.com",
+            UserName = "nematullahhussaini626l",
             EmailConfirmed = true,
 
         };

@@ -23,6 +23,12 @@ namespace Shirzad.Controllers
             return View(emails);
         }
 
+
+      public IActionResult SendEmail()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> RegisterEmail(string emailaddress)
         {
