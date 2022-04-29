@@ -10,8 +10,8 @@ namespace Shirzad.Controllers
     {
         private readonly IUnitOfWork _context;
         private readonly INotyfService _notify;
-        private readonly IProductRepository _product;
-        public EmailController(IUnitOfWork context, INotyfService notfy, IProductRepository product)
+        private readonly IEmailRepository _product;
+        public EmailController(IUnitOfWork context, INotyfService notfy, IEmailRepository product)
         {
             _context = context;
             _notify = notfy;

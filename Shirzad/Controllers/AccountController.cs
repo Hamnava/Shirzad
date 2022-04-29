@@ -13,13 +13,30 @@ namespace Shirzad.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
-        public AccountController(SignInManager<ApplicationUser> sin, IMapper mapper, UserManager<ApplicationUser> userManager, IUnitOfWork context)
+        private readonly IEmailRepository _email;
+        public AccountController(SignInManager<ApplicationUser> sin,IEmailRepository email, IMapper mapper, UserManager<ApplicationUser> userManager, IUnitOfWork context)
         {
             _signInManager = sin;
             _userManager = userManager;
             _mapper = mapper;
             _context = context;
+            _email = email;
         }
+
+
+        public async Task<IActionResult> SendEmail( string subject, string message)
+        {
+            var emaillists = await _context.emailRegisterUW.GetEntitiesAsync();
+            if (emaillists != null)
+            {
+                foreach (var item in emaillists)
+                {
+                    await _email.SendEmailAsync(item.Email, subject, message);
+                }
+            }
+            return RedirectToAction("Forget");
+        }
+
 
         public async Task<IActionResult> Index()
         {
@@ -72,7 +89,7 @@ namespace Shirzad.Controllers
         {
             if (ModelState.IsValid)
             {
-                var username = await _userManager.FindByNameAsync(model.UserName);
+                var username = await _userManager.FindByEmailAsync(model.UserName);
                 if (username == null)
                 {
                     ModelState.AddModelError("Password", "Oops, Incorrect username or password 🙄");
