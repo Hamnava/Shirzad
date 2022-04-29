@@ -14,6 +14,8 @@ namespace Shirzad.Core.Repository.Interfaces
 
         List<Product> Search(string text, List<int> categoryid, int sort = 1);
 
+         Task<bool> IsEmailExisted(string email);
+
 
     }
 }

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EmailRegister>
+@{
+    ViewData["Title"] = "Email List";
+    var counter = 1;
+}
+<div class="container mt-4">
+    <div class="row">
+        <div class="alert alert-info mb-3">
+           Email Lists
+        </div>
+    </div>
+  
+</div>
+<table class="table table-hover mt-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Register Date</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@counter</th>
+                <td>@item.Email</td>
+                <td>@item.DateRegister.ToString("dddd, dd MMMM yyyy")</td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                    <button type="submit" title="Delete"  class="btn-info btn mr-3"><i class="fa fa-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+            counter++;
+        }
+
+       
+    </tbody>
+</table>

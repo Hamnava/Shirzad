@@ -11,6 +11,7 @@ namespace Shirzad.AutoMapperProfile
             CreateMap<ProductViewModel, Product>().ReverseMap();
             CreateMap<ContactViewModel, ContactUs>().ReverseMap();
             CreateMap<PricingViewModel, Pricing>().ReverseMap();
+            CreateMap<UserViewModel, ApplicationUser>().ReverseMap();
         }
     }
 }

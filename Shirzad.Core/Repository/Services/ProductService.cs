@@ -81,5 +81,15 @@ namespace Shirzad.Core.Repository.Services
 
             return listProducts;
         }
+
+        public async Task<bool> IsEmailExisted(string email)
+        {
+            var emaailadd = await _context.EmailRegisters.FirstOrDefaultAsync(x => x.Email == email);
+            if (emaailadd == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

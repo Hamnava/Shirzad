@@ -9,5 +9,6 @@ namespace Shirzad.DataLayer.Entities
 {
     public class ApplicationUser: IdentityUser
     {
+        public string EmailPassword { get; set; }
     }
 }

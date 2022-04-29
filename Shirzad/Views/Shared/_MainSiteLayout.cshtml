@@ -108,13 +108,15 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-md-0  px-md-0  d-block justify-content-center text-center text-md-start ">
                 <div class="title">
-                    <h4 class="text-white">subscribe to newsletter</h4>
+                    <h4 class="text-white">Subscribe to Our News Latter</h4>
                 </div>
                 <div class="configerEmail d-md-flex d-block">
-                    <input type="text"
+                    <form asp-controller="Email" asp-action="RegisterEmail" method="post">
+                    <input type="email" name="emailaddress" 
                            class="mx-2"
-                           placeholder="write your email" />
-                    <button class="configueremail mx-2 mt-md-0 mt-2">Configure Emial</button>
+                           placeholder="Write your email" />
+                    <button class="configueremail mx-2 mt-md-0 mt-2" type="submit">Rgister</button>
+                    </form>
                 </div>
                 <div class="pt-4 justify-content-center  mx-auto d-flex justify-content-around w-50 icons">
                     <i class="fa fa-brands fa-facebook-square icon"></i>

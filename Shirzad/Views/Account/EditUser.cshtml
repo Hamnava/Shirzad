@@ -1,0 +1,54 @@
+﻿@model UserViewModel
+@{
+
+}
+
+<div style="width:100%; height:100%; margin-top:150px">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="alert alert-info mb-3">
+                Edit Admin property
+            </div>
+        </div>
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Account"> Back </a>
+    </div>
+    <div class="col-6 offset-3">
+        <div class="card pt-4">
+            <h4 class="text-center" style="color:orange"> Admin info </h4>
+            <div class="card-body">
+                <form asp-controller="Account" asp-action="EditUser" method="post" autocomplete="off">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group my-3">
+                        <div class="input-group">
+                            <input asp-for="UserName" type="text" placeholder="Your UserName" class="form-control" />
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger" style="font-weight:bold"></span>
+                    </div>
+                    <div class="form-group my-3">
+                        <div class="input-group">
+                            <input asp-for="PhoneNumber" type="text" placeholder="Your PhoneNumber" class="form-control" />
+                        </div>
+                        <span asp-validation-for="PhoneNumber" class="text-danger" style="font-weight:bold"></span>
+                    </div>
+                    <div class="form-group my-3">
+                        <div class="input-group">
+                            <input asp-for="Email" type="text" placeholder="Your Email " class="form-control" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger" style="font-weight:bold"></span>
+                    </div>
+                     <div class="form-group my-3">
+                        <div class="input-group">
+                            <input asp-for="EmailPassword" type="text" placeholder="Your EmailPassword " class="form-control" />
+                        </div>
+                        <span asp-validation-for="EmailPassword" class="text-danger" style="font-weight:bold"></span>
+                    </div>
+                    <input type="number" asp-for="Id" hidden />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Save Changes" class="btn btn-primary save-btn form-control" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

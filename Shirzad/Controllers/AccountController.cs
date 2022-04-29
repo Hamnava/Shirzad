@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Shirzad.Core.Repository.Interfaces;
 using Shirzad.Core.ViewModels;
 using Shirzad.DataLayer.Entities;
 
@@ -9,11 +11,47 @@ namespace Shirzad.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AccountController(SignInManager<ApplicationUser> sin, UserManager<ApplicationUser> userManager)
+        private readonly IUnitOfWork _context;
+        private readonly IMapper _mapper;
+        public AccountController(SignInManager<ApplicationUser> sin, IMapper mapper, UserManager<ApplicationUser> userManager, IUnitOfWork context)
         {
             _signInManager = sin;
             _userManager = userManager;
+            _mapper = mapper;
+            _context = context;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            var user = await _context.userManagerUW.GetEntitiesAsync();
+            return View(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await _context.userManagerUW.GetByIdAsync(id);
+            var mapUser = _mapper.Map<UserViewModel>(user);
+            return View(mapUser);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUser(UserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //update
+                var user = await _userManager.FindByIdAsync(model.Id);
+                IdentityResult result = await _userManager.UpdateAsync(_mapper.Map(model, user));
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+            }
+            return View(model);
+        }
+
         public async Task<IActionResult> Login()
         {
             if (User.Identity.IsAuthenticated)

@@ -26,6 +26,21 @@ namespace Shirzad.Core.Repository.Services
         private GenericClass<ContactUs> _contactUs;
         private GenericClass<Pricing> _pricing;
         private GenericClass<Service> _services;
+        private GenericClass<EmailRegister> _emailRegister;
+
+        //Email Register
+        public GenericClass<EmailRegister> emailRegisterUW
+        {
+            get
+            {
+                if (_emailRegister == null)
+                {
+                    _emailRegister = new GenericClass<EmailRegister>(_context);
+                }
+                return _emailRegister;
+            }
+        }
+
 
         //Services
         public GenericClass<Service> serviceUW
