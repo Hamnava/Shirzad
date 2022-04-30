@@ -12,6 +12,7 @@ namespace Shirzad.DataLayer.Entities
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public string AltProp { get; set; }
         public string PrDescription { get; set; }
+        public string ShortDescription { get; set; }
         public bool IsNew { get; set; }
         public bool BestSaller { get; set; }
         public bool IsActive { get; set; } = true;

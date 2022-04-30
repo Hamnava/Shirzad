@@ -64,7 +64,11 @@
                     <label asp-for="BestSaller" for="remember-1"> Mark as BestSaller </label>
                 </div>
             </div>
-
+            <div class="form-group my-3">
+                <label> Short Descriptioin</label>
+                <textarea asp-for="ShortDescription" placeholder="Enter the Short Description " class="form-control"></textarea>
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
 
         </div>
         <div class="col-12">

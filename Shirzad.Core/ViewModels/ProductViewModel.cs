@@ -14,6 +14,7 @@ namespace Shirzad.Core.ViewModels
         public string Name { get; set; }
         [Required(ErrorMessage = "Enter the product price")]
         public double Price { get; set; }
+        public string ShortDescription { get; set; }
         public string PhotoUrl { get; set; }
         public bool BestSaller { get; set; }
         public string AltProp { get; set; }
