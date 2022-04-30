@@ -330,4 +330,44 @@ body {
     color: white;
 }
 
+html,
+body {
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.social_media_container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    position: fixed;
+    width: 160px;
+    top: 50%;
+    z-index:999;
+    right: -115px;
+    
+    font-weight:bold;
+    /* right: -20px; */
+    height: fit-content;
+    background: green;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all ease-in-out 0.4s;
+}
+
+    .social_media_container span {
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .social_media_container:hover {
+        right: -20px;
+    }
+
+
 
