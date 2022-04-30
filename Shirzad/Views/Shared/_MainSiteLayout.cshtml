@@ -10,19 +10,20 @@
     <link rel="stylesheet" href="~/css/font-awesome.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 
-   
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-      crossorigin="anonymous" asp-append-version="true"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
-      crossorigin="anonymous" asp-append-version="true"
-    />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" asp-append-version="true" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/fontawesome-free-6.0.0-beta3-web/css/fontawesome.min.css" />
+    <link rel="stylesheet"
+          href="~/fontawesome-free-6.0.0-beta3-web/css/all.min.css" />
 </head>
 <body>
     <!-- Start of Navbar -->
@@ -49,11 +50,11 @@
                             <a class="nav-link text-white px-3 fs-6 active"
                                aria-current="page"
                                asp-action="Index" asp-controller="SitePages">Home</a>
-                            <a class="nav-link text-white px-3 fs-6"  asp-action="ProductSearch" asp-controller="SitePages">Products</a>
-                            <a class="nav-link text-white px-3 fs-6"  asp-action="PricingOrder" asp-controller="SitePages">Pricing Order</a>
-                            <a class="nav-link text-white px-3 fs-6"  asp-action="Contact" asp-controller="SitePages">Contact Us</a>
-                            <a class="nav-link text-white px-3 fs-6"  asp-action="WebPay" asp-controller="SitePages">Web Pay</a>
-                           
+                            <a class="nav-link text-white px-3 fs-6" asp-action="ProductSearch" asp-controller="SitePages">Products</a>
+                            <a class="nav-link text-white px-3 fs-6" asp-action="PricingOrder" asp-controller="SitePages">Pricing Order</a>
+                            <a class="nav-link text-white px-3 fs-6" asp-action="Contact" asp-controller="SitePages">Contact Us</a>
+                            <a class="nav-link text-white px-3 fs-6" asp-action="WebPay" asp-controller="SitePages">Web Pay</a>
+
                         </div>
                     </div>
                 </div>
@@ -112,18 +113,18 @@
                 </div>
                 <div class="configerEmail d-md-flex d-block">
                     <form asp-controller="Email" asp-action="RegisterEmail" method="post">
-                    <input type="email" name="emailaddress" 
-                           class="mx-2"
-                           placeholder="Write your email" />
-                    <button class="configueremail mx-2 mt-md-0 mt-2" type="submit">Rgister</button>
+                        <input type="email" name="emailaddress"
+                               class="mx-2"
+                               placeholder="Write your email" />
+                        <button class="configueremail mx-2 mt-md-0 mt-2" type="submit">Rgister</button>
                     </form>
                 </div>
                 <div class="pt-4 justify-content-center  mx-auto d-flex justify-content-around w-50 icons">
-                    <i class="fa fa-brands fa-facebook-square icon"></i>
-                    <i class="fa fa-brands fa-linkedin icon"></i>
-                    <i class="fa fa-brands fa-telegram icon"></i>
-                    <i class="fa fa-brands fa-instagram icon"></i>
-                    <i class="fa fa-brands fa-whatsapp icon"></i>
+                    <i class="fa-brands fa-facebook icon"></i>
+                    <i class="fa-brands fa-linkedin-in icon"></i>
+                    <i class="fa-brands fa-telegram icon"></i>
+                    <i class="fa-brands fa-instagram icon"></i>
+                    <i class="fa-brands fa-whatsapp icon"></i>
                 </div>
             </div>
         </div>
@@ -131,7 +132,7 @@
             <div class="d-flex text-center justify-content-center text-white">
                 <p>
                     Copyright © 2022 All rights reserved | Shirzad
-                    
+
                 </p>
             </div>
         </div>
@@ -147,8 +148,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
             integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
             crossorigin="anonymous"></script>
-            @await Component.InvokeAsync("Notyf") 
-     @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/fontawesome-free-6.0.0-beta3-web/js/fontawesome.min.js"></script>
+    <script src="~/fontawesome-free-6.0.0-beta3-web/js/all.min.js"></script>
+    @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", required: false)
 
     <script>
         $('.owl-carousel').owlCarousel({

@@ -47,7 +47,8 @@ namespace Shirzad.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var webPay = await _context.webPayOnlineUW.GetByIdAsync(id);
-            return View(webPay);
+            var mapModel = _mapper.Map<WebPayOnlineViewModel>(webPay);
+            return View(mapModel);
         }
 
         [HttpPost]

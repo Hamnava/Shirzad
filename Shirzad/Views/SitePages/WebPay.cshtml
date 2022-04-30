@@ -1,9 +1,23 @@
-﻿@{
+﻿@model IEnumerable<WebPayOnline>
+
+@{
     ViewData["Title"] = "Shirzad Store";
     Layout = "_MainSiteLayout";
 }
 
 
-<h1 class="text-center alert alert-info mt-5">Your WebPay page goes here!</h1>
-
-<div style="height:100vh"></div>
+<div class="container mt-5">
+    <div style="height:100vh">
+        @foreach (var item in Model)
+        {
+            <h3>@item.Name</h3>
+            <p class="mt-3 mb-5">@item.Description</p>
+            <div class="text-center" >
+                <a href="@item.ImageLink">
+                <img src="~/Img/WebPay/@item.PhotoUrl" class="img-fluid" style="height:400px" alt="@item.Name" />
+            </a>
+            </div>
+            
+        }
+    </div>
+</div>

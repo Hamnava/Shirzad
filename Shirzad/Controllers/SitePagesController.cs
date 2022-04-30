@@ -79,9 +79,10 @@ namespace Shirzad.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
-        public IActionResult WebPay()
+        public async Task<IActionResult> WebPay()
         {
-            return View();
+            var webPay = await _context.webPayOnlineUW.GetEntitiesAsync();
+            return View(webPay);
         }
     }
 }
