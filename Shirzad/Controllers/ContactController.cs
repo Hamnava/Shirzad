@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shirzad.Core.Repository.Interfaces;
 
 namespace Shirzad.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         private readonly IUnitOfWork _context;

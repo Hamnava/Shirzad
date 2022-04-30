@@ -27,6 +27,21 @@ namespace Shirzad.Core.Repository.Services
         private GenericClass<Pricing> _pricing;
         private GenericClass<Service> _services;
         private GenericClass<EmailRegister> _emailRegister;
+        private GenericClass<WebPayOnline> _wePayOnline;
+
+        //WebPay Online
+        public GenericClass<WebPayOnline> webPayOnlineUW
+        {
+            get
+            {
+                if (_wePayOnline == null)
+                {
+                    _wePayOnline = new GenericClass<WebPayOnline>(_context);
+                }
+                return _wePayOnline;
+            }
+        }
+
 
         //Email Register
         public GenericClass<EmailRegister> emailRegisterUW

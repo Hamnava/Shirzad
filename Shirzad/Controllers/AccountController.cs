@@ -13,31 +13,16 @@ namespace Shirzad.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
-        private readonly IEmailRepository _email;
-        public AccountController(SignInManager<ApplicationUser> sin,IEmailRepository email, IMapper mapper, UserManager<ApplicationUser> userManager, IUnitOfWork context)
+       
+        public AccountController(SignInManager<ApplicationUser> sin, IMapper mapper, UserManager<ApplicationUser> userManager, IUnitOfWork context)
         {
             _signInManager = sin;
             _userManager = userManager;
             _mapper = mapper;
             _context = context;
-            _email = email;
+     
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SendEmail(EmailSenderViewModel model)
-        {
-           string UserName = HttpContext.User.Identity.Name;
-            var user = await _userManager.FindByNameAsync(UserName);
-            var emaillists = await _context.emailRegisterUW.GetEntitiesAsync();
-            if (emaillists != null)
-            {
-                foreach (var item in emaillists)
-                {
-                    await _email.SendEmailAsync(item.Email, model.Subject, model.Message, user.UserName, user.EmailPassword, user.Email);
-                }
-            }
-            return RedirectToAction("Index");
-        }
 
 
         public async Task<IActionResult> Index()

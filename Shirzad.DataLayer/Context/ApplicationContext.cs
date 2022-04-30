@@ -24,5 +24,6 @@ namespace Shirzad.DataLayer.Context
         public DbSet<Pricing> Pricings { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<EmailRegister> EmailRegisters { get; set; }
+        public DbSet<WebPayOnline> WebPayOnlines { get; set; }
     }
 }

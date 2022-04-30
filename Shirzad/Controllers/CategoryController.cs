@@ -6,7 +6,7 @@ using Shirzad.DataLayer.Entities;
 
 namespace Shirzad.Controllers
 {
-
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _context;

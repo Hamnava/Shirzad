@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shirzad.Core.Repository.Interfaces;
 using Shirzad.DataLayer.Entities;
 
 namespace Shirzad.Controllers
 {
+    [Authorize]
     public class PricingController : Controller
     {
         private readonly IUnitOfWork _context;

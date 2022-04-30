@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Shirzad.Core.publicClasses;
@@ -8,7 +9,7 @@ using Shirzad.DataLayer.Entities;
 
 namespace Shirzad.Controllers
 {
-    
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _context;

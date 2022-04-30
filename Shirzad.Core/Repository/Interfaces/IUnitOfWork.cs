@@ -15,6 +15,7 @@ namespace Shirzad.Core.Repository.Interfaces
         GenericClass<Pricing> pricingUW { get; }
         GenericClass<Service> serviceUW { get; }
         GenericClass<EmailRegister> emailRegisterUW { get; }
+        GenericClass<WebPayOnline> webPayOnlineUW { get; }
         Task saveAsync();
     }
 }

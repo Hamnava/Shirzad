@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shirzad.Core.publicClasses;
 using Shirzad.Core.Repository.Interfaces;
@@ -7,6 +8,7 @@ using Shirzad.DataLayer.Entities;
 
 namespace Shirzad.Controllers
 {
+    [Authorize]
     public class ProductGalleryController : Controller
     {
         private readonly IUnitOfWork _context;

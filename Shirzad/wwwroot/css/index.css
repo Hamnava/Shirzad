@@ -323,3 +323,11 @@ body {
         top: 20px;
     }
 
+.bg-white .new span {
+    padding: 6px;
+    border-radius: 3px;
+    background-color: rgba(0, 34, 64, 255);
+    color: white;
+}
+
+
