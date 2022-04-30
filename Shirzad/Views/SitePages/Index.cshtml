@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>
+﻿@model IEnumerable<Category>
 @{
     ViewData["Title"] = "Shirzad Store";
     Layout = "_MainSiteLayout";
@@ -11,78 +11,26 @@
 <!-- start of product section -->
 <Product class="products">
     <div class="products">
-        <!-- start of first row owl-carousel-->
-
-        <div class="mx-auto pt-5" style="width: 95%">
-            <div class="border-products1">
-                <span class="pb-1 border-products w-100">Newest Products</span>
-            </div>
-            <div class="container-fluid products">
-                <div class="row my-2">
-                    <div class="col-12 m-auto mt-4">
-                        <div class="owl-carousel owl-theme">
-                            @foreach (var item in Model)
-                            {
-                                <div class="item bg-white mh-100 pb-3">
-                                    <div class="px-4 pt-2 new">
-                                        <span class="fs-5 text-white font-weight-bold bg-warning px-2 py-1 rounded-3">new</span>
-                                    </div>
-                                    <div class="">
-                                        <a asp-action="ProductDetails" asp-controller="SitePages" asp-route-id="@item.Id">
-                                        <img src="~/Img/Product/@item.PhotoUrl"
-                                         class="img-fluid py-4 mx-auto"
-                                         alt="@item.AltProp" />
-                                         </a>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <p class="my-2">@item.ShortDescription</p>
-                                        <h4>@item.Name</h4>
-                                    </div>
-                                    <div class="text-center m-0 p-0">
-                                       
-                                        <p class="pb-2 price fs-5">$ @item.Price</p>
-                                    </div>
-                                </div>
-                            }
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end of first row owl-carousel-->
-        <!-- start of BestSaller row for owl-carousel -->
+        @foreach (var item in Model)
+        {
+             <!-- start of Product Bassed on Category row for owl-carousel -->
         <div class="mx-auto" style="width: 95%">
             <div class="border-products1">
-                <span class="border-products pb-1 w-100">Best Saller</span>
+                <span class="border-products pb-1 w-100">@item.Name</span>
             </div>
             <div class="container-fluid products">
                 <div class="row my-2">
                     <div class="col-12 m-auto mt-4">
                         <div class="owl-carousel owl-theme">
-                           @await Component.InvokeAsync("BestSaller")
+                           @await Component.InvokeAsync("ProductsBassedOnCategory", item.Id)
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end of second row for owl-carousel -->
-        <!-- end of Less price row for owl-carousel -->
-         <div class="mx-auto" style="width: 95%">
-            <div class="border-products1">
-                <span class="border-products pb-1 w-100">The Cheapest products</span>
-            </div>
-            <div class="container-fluid products">
-                <div class="row my-2">
-                    <div class="col-12 m-auto mt-4">
-                        <div class="owl-carousel owl-theme">
-                           @await Component.InvokeAsync("LessPriceComponent")
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end of Less Price row for owl-carousel -->
+        <!-- end of Product Bassed on Category for owl-carousel -->
+        }
+       
     </div>
 </Product>
 <!-- end of product section -->

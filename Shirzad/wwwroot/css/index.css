@@ -309,3 +309,17 @@ body {
         color: white;
     }
 
+.search-item {
+    position: relative;
+}
+
+    .search-item .new span {
+        position: absolute;
+        padding: 6px;
+        border-radius: 3px;
+        background-color: rgba(0, 34, 64, 255);
+        color: white;
+        left: 20px;
+        top: 20px;
+    }
+

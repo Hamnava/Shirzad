@@ -22,8 +22,8 @@ namespace Shirzad.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var newProducts = await _context.productUW.GetEntitiesAsync(x=> x.IsNew && x.IsActive);
-            return View(newProducts);
+            var categories = await _context.categoryUW.GetEntitiesAsync();
+            return View(categories);
         }
 
         public async Task<IActionResult> ProductDetails(int id)
