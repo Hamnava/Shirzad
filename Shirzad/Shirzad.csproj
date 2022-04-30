@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Img\WebPay\" />
     <Folder Include="wwwroot\Img\Service\" />
     <Folder Include="wwwroot\Img\Slider\" />
   </ItemGroup>

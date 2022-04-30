@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebPayOnline>
+@{
+    ViewData["Title"] = "Web Pay";
+    var counter = 1;
+}
+<div class="container mt-4">
+    <div class="row">
+        <div class="alert alert-info mb-3">
+            Web Pay
+        </div>
+    </div>
+    <a class="btn btn-primary" asp-action="AddWebPay" asp-controller="WebPayOnline"> Add New <i class="fa fa-plus ml-2"></i></a>
+</div>
+<table class="table table-hover mt-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">WebPay Title</th>
+            <th scope="col">Image Link</th>
+            <th scope="col">Image</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.ImageLink</td>
+                <td>
+                    <img src="~/Img/WebPay/@item.PhotoUrl"  style="width:150px; height:60px" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="WebPayOnline" class="btn-success btn mr-3"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+            counter++;
+        }
+
+       
+    </tbody>
+</table>
