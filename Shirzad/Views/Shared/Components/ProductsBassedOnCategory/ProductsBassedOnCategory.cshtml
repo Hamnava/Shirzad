@@ -15,9 +15,11 @@
         }
 
         <div class="">
+            <a asp-action="ProductDetails" asp-controller="SitePages" asp-route-id="@item.Id"> 
             <img src="~/Img/Product/@item.PhotoUrl"
              class="img-fluid w-100"
              alt="@item.AltProp" />
+             </a>
         </div>
         <div class="card-body text-center">
             <h4>@item.Name</h4>
